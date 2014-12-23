@@ -1,15 +1,15 @@
 gulp = require 'gulp'
 
-parameters = require './config/parameters.coffee'
+parameters = require '../config/parameters.coffee'
 
-coffee  = require 'gulp-coffee'
-concat  = require 'gulp-concat'
-gutil   = require 'gulp-util'
-slim    = require 'gulp-slim'
-sass    = require 'gulp-sass'
-bowerFiles    = require 'gulp-bower-files'
-uglify  = require 'gulp-uglify'
-manifest      = require 'gulp-manifest'
+coffee = require 'gulp-coffee'
+concat = require 'gulp-concat'
+gutil = require 'gulp-util'
+slim = require 'gulp-slim'
+sass = require 'gulp-sass'
+bowerFiles = require 'gulp-bower-files'
+uglify = require 'gulp-uglify'
+manifest = require 'gulp-manifest'
 rev = require 'gulp-rev'
 serve = require 'gulp-serve'
 
@@ -56,7 +56,7 @@ gulp.task 'assets', ->
   .pipe gulp.dest parameters.web_path
   .on 'error', gutil.log
 
-gulp.task 'manifest', ['vendors', 'jade', 'sass', 'coffee', 'minify'], ->
+gulp.task 'manifest', ['vendor', 'slim', 'sass', 'coffee', 'minify'], ->
   gulp.src "#{parameters.web_path}/**"
   .pipe manifest(
     hash: true
