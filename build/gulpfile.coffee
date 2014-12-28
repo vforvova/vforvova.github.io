@@ -47,7 +47,7 @@ gulp.task 'bower', ->
 
 gulp.task 'minify', ['vendor', 'bower', 'coffee'], ->
   gulp.src "#{parameters.web_path}/js/**.js"
-  .pipe uglify outSourceMap: true
+  .pipe uglify()
   .pipe gulp.dest "#{parameters.web_path}/js"
   .on 'error', gutil.log
 
@@ -57,8 +57,7 @@ gulp.task 'assets', ->
   .on 'error', gutil.log
 
 gulp.task 'manifest', ['vendor', 'slim', 'sass', 'coffee', 'minify'], ->
-  gulp.src "#{parameters.web_path}/**"
-  .pipe manifest(
+  options = {
     hash: true
     timestamp: false
     preferOnline: true
@@ -70,7 +69,9 @@ gulp.task 'manifest', ['vendor', 'slim', 'sass', 'coffee', 'minify'], ->
       parameters.manifest_file
       'robots.txt'
     ]
-  )
+  }
+  gulp.src "#{parameters.web_path}/**"
+  .pipe manifest options
   .pipe replace new RegExp('\/%20', 'g'), '/ '
   .pipe gulp.dest parameters.web_path
 
