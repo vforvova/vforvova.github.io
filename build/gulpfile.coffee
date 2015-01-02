@@ -6,7 +6,7 @@ coffee = require 'gulp-coffee'
 concat = require 'gulp-concat'
 gutil = require 'gulp-util'
 slim = require 'gulp-slim'
-sass = require 'gulp-sass'
+sass = require 'gulp-ruby-sass'
 bowerFiles = require 'main-bower-files'
 uglify = require 'gulp-uglify'
 manifest = require 'gulp-manifest'
@@ -45,7 +45,7 @@ gulp.task 'bower', ->
   .pipe gulp.dest "#{parameters.web_path}/js"
   .on 'error', gutil.log
 
-gulp.task 'minify', ['vendor', 'bower', 'coffee'], ->
+gulp.task 'minify', ['vendor', 'coffee'], ->
   gulp.src "#{parameters.web_path}/js/**.js"
   .pipe uglify()
   .pipe gulp.dest "#{parameters.web_path}/js"
@@ -56,58 +56,7 @@ gulp.task 'assets', ->
   .pipe gulp.dest parameters.web_path
   .on 'error', gutil.log
 
-gulp.task 'manifest', ['vendor', 'slim', 'sass', 'coffee', 'minify'], ->
-  options = {
-    hash: true
-    timestamp: false
-    preferOnline: true
-    fallback: [
-      'api/picture/ images/placeholder.png'
-    ]
-    filename: parameters.manifest_file
-    exclude: [
-      parameters.manifest_file
-      'robots.txt'
-    ]
-  }
-  gulp.src "#{parameters.web_path}/**"
-  .pipe manifest options
-  .pipe replace new RegExp('\/%20', 'g'), '/ '
-  .pipe gulp.dest parameters.web_path
-
-gulp.task 'assets', ['clean'], ->
-  gulp.src "#{parameters.assets_path}/**"
-  .pipe gulp.dest parameters.web_path
-  .on 'error', gutil.log
-
-gulp.task 'styles', ->
-  gulp.src parameters.lstyles_main_file
-  .pipe sass paths: [ path.join(__dirname) ]
-  .pipe rev()
-  .pipe gulp.dest "#{parameters.web_path}/css"
-  .pipe rename 'rev-manifest-css.json'
-  .pipe gulp.dest parameters.web_path
-  .on 'error', gutil.log
-
-gulp.task 'references', ['styles', 'slim'], ->
-  revManifest = {}
-
-  for fileName in fs.readdirSync parameters.web_path
-    _.extend(
-      revManifest,
-      JSON.parse fs.readFileSync "#{parameters.web_path}/#{fileName}",
-      'utf8' if /^(rev-manifest)/.test fileName
-    )
-
-  replacements = {}
-  for oldFileName, revFileName of revManifest
-    replacements[oldFileName.replace(parameters.app_path, '')] = revFileName.replace(parameters.app_path, '')
-
-  gulpStream = gulp.src ["#{parameters.web_path}/index.html"]
-  gulpStream.setMaxListeners 20
-  for oldFileName, revFileName of replacements
-    gulpStream.pipe replace new RegExp(oldFileName, 'g'), revFileName
-  gulpStream.pipe gulp.dest parameters.web_path
+gulp.task 'build', ['sass', 'minify', 'slim', 'assets']
 
 gulp.task 'watch', ['build'], ->
   gulp.watch "#{parameters.app_path}/**/*.coffee", ['coffee' ]
