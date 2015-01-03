@@ -59,11 +59,9 @@ gulp.task 'assets', ->
 gulp.task 'build', ['sass', 'minify', 'slim', 'assets']
 
 gulp.task 'watch', ['build'], ->
-  gulp.watch "#{parameters.app_path}/**/*.coffee", ['coffee' ]
-  gulp.watch "#{parameters.app_path}/**/*.sass", ['styles', 'manifest', 'references']
-  gulp.watch "#{parameters.app_path}/*.slim", ['slim', 'references']
-  gulp.watch "#{parameters.app_path}/*/**/*.slim", ['templates']
+  gulp.watch "#{parameters.app_path}/**/*.coffee", ['coffee']
+  gulp.watch "#{parameters.app_path}/**/*.sass", ['sass']
+  gulp.watch "#{parameters.app_path}/*.slim", ['slim']
   gulp.watch parameters.assets_path, ['assets']
-  gulp.watch 'bower.json', ['vendors']
 
-gulp.task 'serve', ['build'], serve parameters.web_path
+gulp.task 'serve', ['watch'], serve parameters.web_path
