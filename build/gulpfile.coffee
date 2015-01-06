@@ -12,6 +12,8 @@ uglify = require 'gulp-uglify'
 manifest = require 'gulp-manifest'
 rev = require 'gulp-rev'
 serve = require 'gulp-serve'
+postcss = require 'gulp-postcss'
+autoprefixer = require 'autoprefixer-core'
 
 gulp.task 'coffee', ->
   gulp.src "#{parameters.app_path}/**/*.coffee"
@@ -31,6 +33,14 @@ gulp.task 'sass', ->
   .pipe sass()
   .pipe gulp.dest "#{parameters.web_path}/css"
   .on 'error', gutil.log
+
+gulp.task 'css', ->
+  processors = [
+    autoprefixer { browsers: ['last 1 version'] }
+  ]
+  gulp.src "#{parameters.web_path}/app.css"
+    .pipe postcss processors
+    .pipe gulp.dest parameters.web_path
 
 gulp.task 'vendor', ->
   gulp.src "#{parameters.vendor_path}/**/*.js"
@@ -56,7 +66,7 @@ gulp.task 'assets', ->
   .pipe gulp.dest parameters.web_path
   .on 'error', gutil.log
 
-gulp.task 'build', ['sass', 'minify', 'slim', 'assets']
+gulp.task 'build', ['sass', 'css', 'minify', 'slim', 'assets']
 
 gulp.task 'watch', ['build'], ->
   gulp.watch "#{parameters.app_path}/**/*.coffee", ['coffee']
