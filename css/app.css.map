@@ -1,7 +1,7 @@
 {
 "version": 3,
-"mappings": "AAAA,CAAC;EACC,MAAM,EAAE,CAAC;EACT,OAAO,EAAE,CAAC;;AAEZ,UAAU;EACR,SAAS,EAAE,IAAI;EACf,UAAU,EAAE,IAAI;;ACNlB,KAAK;EACH,MAAM,EAAE,IAAI;EACZ,KAAK,EAAE,IAAI;EACX,QAAQ,EAAE,QAAQ;EAElB,iBAAW;IACT,UAAU,EAAE,MAAM;IAClB,aAAa,EAAE,IAAI;IACnB,MAAM,EAAE,KAAK;IACb,KAAK,EAAE,KAAK",
-"sources": ["../../../../../../../Users/vforvova/Dropbox/Apps/vforvova.github.io/app/global.sass","../../../../../../../Users/vforvova/Dropbox/Apps/vforvova.github.io/app/page.sass"],
+"mappings": "AAAQ,oEAA4D;ACApE,CAAC;EACC,MAAM,EAAE,CAAC;EACT,OAAO,EAAE,CAAC;;AAEZ,UAAU;EACR,SAAS,EAAE,IAAI;EACf,UAAU,EAAE,IAAI;EAChB,KAAK,ECJO,IAAI;;ADMlB,sBAAsB;EACpB,WAAW,ECDF,iBAAU;EDEnB,WAAW,EAAE,GAAG;;AEPhB,WAAK;EACH,KAAK,EAAE,KAAK;EACZ,MAAM,EAAE,SAA0B;EAClC,UAAU,EAAE,MAAM;EAElB,eAAG;IACD,aAAa,EAAE,IAAgB;IAC/B,MAAM,EAXE,KAAK;IAYb,KAAK,EAZG,KAAK;IAab,aAAa,EAAE,IAAW",
+"sources": ["../../../../../../../Users/vforvova/Dropbox/Apps/vforvova.github.io/app/fonts.sass","../../../../../../../Users/vforvova/Dropbox/Apps/vforvova.github.io/app/global.sass","../../../../../../../Users/vforvova/Dropbox/Apps/vforvova.github.io/app/variables.sass","../../../../../../../Users/vforvova/Dropbox/Apps/vforvova.github.io/app/page.sass"],
 "names": [],
 "file": "app.css"
 }
