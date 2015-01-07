@@ -14,7 +14,7 @@ rev = require 'gulp-rev'
 serve = require 'gulp-serve'
 postcss = require 'gulp-postcss'
 autoprefixer = require 'autoprefixer-core'
-filter = require 'gulp-filter'
+preen = require 'preen'
 
 gulp.task 'coffee', ->
   gulp.src "#{parameters.app_path}/**/*.coffee"
@@ -49,26 +49,8 @@ gulp.task 'vendor', ->
   .pipe gulp.dest "#{parameters.web_path}/js"
   .on 'error', gutil.log
 
-gulp.task 'bower', ->
-  jsFilter = filter '**/*.js'
-  assetsFilter = filter [
-    '*'
-    '!**/*.js'
-    '!**/*.css'
-    '!**/*.sass'
-    '!**/*.scss'
-    '!**/*.less'
-    '!**/*.coffee'
-  ]
-  gulp.src bowerFiles()
-  .pipe jsFilter
-  .pipe concat parameters.bower_main_file
-  .pipe gulp.dest "#{parameters.web_path}/js"
-  .pipe jsFilter.restore()
-  .pipe assetsFilter
-  .pipe gulp.dest parameters.web_path
-  .pipe assetsFilter.restore()
-  .on 'error', gutil.log
+gulp.task 'preen', (cb) ->
+  preen.preen {}, cb
 
 gulp.task 'minify', ['vendor', 'coffee'], ->
   gulp.src "#{parameters.web_path}/js/**.js"
@@ -81,7 +63,7 @@ gulp.task 'assets', ->
   .pipe gulp.dest parameters.web_path
   .on 'error', gutil.log
 
-gulp.task 'build', ['sass', 'css', 'minify', 'slim', 'assets']
+gulp.task 'build', ['preen', 'sass', 'css', 'minify', 'slim', 'assets']
 
 gulp.task 'watch', ['build'], ->
   gulp.watch "#{parameters.app_path}/**/*.coffee", ['coffee']

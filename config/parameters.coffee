@@ -8,10 +8,7 @@ config =
   app_main_file: 'app.js'
   css_main_file: 'app.css'
   styles_main_file: "#{app_path}/app.sass"
-  templates_file: 'app.templates.js'
-  templates_module: 'myapp'
-  vendor_main_file: 'vendor.js'
-  bower_main_file: 'bower-vendor.js'
   manifest_file: 'app.appcache'
+  bower_folder: './bower_components'
 
 module.exports = config

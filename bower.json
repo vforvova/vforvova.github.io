@@ -16,5 +16,10 @@
   ],
   "dependencies": {
     "components-font-awesome": "~4.2.0"
+  },
+  "preen": {
+    "components-font-awesome": [
+      "fonts/*", "css/*"
+    ]
   }
 }
