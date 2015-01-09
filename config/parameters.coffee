@@ -6,6 +6,7 @@ config =
   vendor_path: 'vendor'
   assets_path: "#{app_path}/assets"
   app_main_file: 'app.js'
+  vendor_main_file: 'vendor.js'
   css_main_file: 'app.css'
   styles_main_file: "#{app_path}/app.sass"
   manifest_file: 'app.appcache'

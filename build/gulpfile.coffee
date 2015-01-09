@@ -7,14 +7,13 @@ concat = require 'gulp-concat'
 gutil = require 'gulp-util'
 slim = require 'gulp-slim'
 sass = require 'gulp-ruby-sass'
-bowerFiles = require 'main-bower-files'
 uglify = require 'gulp-uglify'
 manifest = require 'gulp-manifest'
 rev = require 'gulp-rev'
 serve = require 'gulp-serve'
 postcss = require 'gulp-postcss'
 autoprefixer = require 'autoprefixer-core'
-preen = require 'preen'
+bowerSrc = require 'gulp-bower-src'
 
 gulp.task 'coffee', ->
   gulp.src "#{parameters.app_path}/**/*.coffee"
@@ -49,9 +48,6 @@ gulp.task 'vendor', ->
   .pipe gulp.dest "#{parameters.web_path}/js"
   .on 'error', gutil.log
 
-gulp.task 'preen', (cb) ->
-  preen.preen {}, cb
-
 gulp.task 'minify', ['vendor', 'coffee'], ->
   gulp.src "#{parameters.web_path}/js/**.js"
   .pipe uglify()
@@ -63,7 +59,10 @@ gulp.task 'assets', ->
   .pipe gulp.dest parameters.web_path
   .on 'error', gutil.log
 
-gulp.task 'build', ['preen', 'sass', 'css', 'minify', 'slim', 'assets']
+gulp.task 'bower', ->
+  bowerSrc().pipe gulp.dest parameters.web_path
+
+gulp.task 'build', ['sass', 'css', 'minify', 'slim', 'assets']
 
 gulp.task 'watch', ['build'], ->
   gulp.watch "#{parameters.app_path}/**/*.coffee", ['coffee']
