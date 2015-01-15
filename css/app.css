@@ -24,10 +24,20 @@ a {
     height: 150px;
     width: 150px;
     margin-bottom: 30px; }
-  .page .info .icon {
-    border: 1px solid #888;
-    border-radius: 30px;
-    background-color: black;
-    fill: #FFFFFF !important; }
+  .page .info footer {
+    margin-top: 15px;
+    margin-left: -15px; }
+    .page .info footer a {
+      margin-left: 15px;
+      cursor: pointer; }
+      .page .info footer a .icon {
+        cursor: pointer;
+        border: 1px solid #333;
+        border-radius: 30px;
+        fill: #333; }
+    .page .info footer a:hover .icon {
+      border: 1px solid #333;
+      border-radius: 30px;
+      fill: #333; }
 
 /*# sourceMappingURL=app.css.map */

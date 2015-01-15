@@ -13,9 +13,22 @@ $page-vertical-margin: $indent * 4
       width: $avatar-size
       margin-bottom: $indent * 2
 
-    .icon
-      border: 1px solid $gray
-      border-radius: 30px
-      background-color: black
+    footer
+      margin-top: 15px
+      margin-left: -15px
 
-      fill: #FFFFFF !important
+      a
+        margin-left: 15px
+        cursor: pointer
+
+        .icon
+          cursor: pointer
+          border: 1px solid $gray-darken
+          border-radius: 30px
+          fill: $gray-darken
+
+      a:hover
+        .icon
+          border: 1px solid $gray-darken
+          border-radius: 30px
+          fill: $gray-darken

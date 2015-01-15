@@ -13,7 +13,8 @@ rev = require 'gulp-rev'
 serve = require 'gulp-serve'
 postcss = require 'gulp-postcss'
 autoprefixer = require 'autoprefixer-core'
-bowerSrc = require 'gulp-bower-src'
+cssmin = require 'gulp-cssmin'
+evilIcons = require 'gulp-evil-icons'
 
 gulp.task 'coffee', ->
   gulp.src "#{parameters.app_path}/**/*.coffee"
@@ -25,6 +26,7 @@ gulp.task 'coffee', ->
 gulp.task 'slim', ->
   gulp.src "#{parameters.app_path}/**/*.slim"
   .pipe slim pretty: true
+  .pipe evilIcons()
   .pipe gulp.dest parameters.web_path
   .on 'error', gutil.log
 
@@ -58,9 +60,6 @@ gulp.task 'assets', ->
   gulp.src "#{parameters.assets_path}/**"
   .pipe gulp.dest parameters.web_path
   .on 'error', gutil.log
-
-gulp.task 'bower', ->
-  bowerSrc().pipe gulp.dest parameters.web_path
 
 gulp.task 'build', ['sass', 'css', 'minify', 'slim', 'assets']
 

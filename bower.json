@@ -14,12 +14,14 @@
     "test",
     "tests"
   ],
-  "dependencies": {
-    "components-font-awesome": "~4.2.0"
+  "devDependencies": {
+    "ionicons": "~2.0.0"
   },
   "overrides": {
-    "components-font-awesome": {
-      "ignore": ["scss/**", "less/**", "*.json", "*.js", "Makefile", ".gitignore", "*.md"]
+    "ionicons": {
+      "ignore": [
+        "*.md", "*.json", "LICENSE", "*.html", "scss", "less", "src", "png"
+      ]
     }
   }
 }
