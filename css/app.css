@@ -32,8 +32,6 @@ a {
       cursor: pointer; }
       .page .info footer a .icon {
         cursor: pointer;
-        width: 60px;
-        height: 60px;
         border: 1px solid #333;
         border-radius: 30px;
         fill: #333; }

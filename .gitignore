@@ -1,5 +1,9 @@
-node_modules/*
 bower_components/
 .sass-cache/
 *.sublime-*
+node_modules/*
+!node_modules/gulp-evil-icons
+node_modules/gulp-evil-icons/*
+!node_modules/gulp-evil-icons/node_modules
+node_modules/gulp-evil-icons/node_modules/*
 !node_modules/gulp-evil-icons/node_modules/evil-icons
